@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import WeatherTodayUI from "../ComponentUI/WeatherTodayUI";
 const DropDownOption = ["Chicago", "Boston", "New York"];
 
@@ -23,5 +25,8 @@ export class WeatherToday extends Component {
     );
   }
 }
-
-export default WeatherToday;
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+export default connect(mapStateToProps)(WeatherToday);
