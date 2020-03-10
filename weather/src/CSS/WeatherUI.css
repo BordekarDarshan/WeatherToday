@@ -4,3 +4,8 @@
   background-size: 100% 100%;
   min-height: 100vh;
 }
+
+.ColorText {
+  color: white;
+  font-family: "Luckiest Guy", cursive;
+}

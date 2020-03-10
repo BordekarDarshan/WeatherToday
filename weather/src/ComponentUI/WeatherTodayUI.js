@@ -41,7 +41,7 @@ export class WeatherTodayUI extends Component {
             <div className="col-lg-4 ">
               <div
                 className="card mt-5 bg-transparent border-white"
-                style={{ width: "18rem" }}
+                style={{ width: "20rem" }}
               >
                 <div className="card-body">
                   <span>
@@ -65,18 +65,40 @@ export class WeatherTodayUI extends Component {
           <div className="col-lg-4 "></div>
 
           <div className="row">
-            <div className="col-lg-2 "></div>
-            <div className="col-lg-8 ">
-              <div
-                className="card mt-5 bg-transparent border-white"
-                style={{ width: "18rem" }}
-              >
-                <div className="card-body">
-                  <p></p>
+            <div className="col-lg-4"></div>
+            {!this.props.WeatherDataBind ? null : (
+              <div className="col-lg-4 ">
+                <div
+                  className="card bg-transparent mt-5 border-0"
+                  style={{ width: "20rem" }}
+                >
+                  <div className="card-body">
+                    <h1 className="ColorText">
+                      {this.props.WeatherDataBind.sys.country}
+                    </h1>
+                    <h3 className="ColorText">
+                      {this.props.WeatherDataBind.name}{" "}
+                    </h3>
+                    {this.props.WeatherDataBind.weather.map(item => (
+                      <React.Fragment>
+                        <h4 className="ColorText">Weather: {item.main}</h4>
+                      </React.Fragment>
+                    ))}
+                    <h4 className="ColorText">
+                      Temperature: {this.props.WeatherDataBind.main.temp} °F
+                    </h4>
+                    <h4 className="ColorText">
+                      Humidity: {this.props.WeatherDataBind.main.humidity} %
+                    </h4>
+                    <h4 className="ColorText">
+                      Wind: {this.props.WeatherDataBind.wind.speed} km/h
+                    </h4>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-2 "></div>
+            )}
+
+            <div className="col-lg-4"></div>
           </div>
         </div>
       </div>
@@ -86,7 +108,7 @@ export class WeatherTodayUI extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    WeatherDataBind: state
+    WeatherDataBind: state.WeatherData
   };
 };
 export default connect(mapStateToProps, { getResultByCityAction })(
