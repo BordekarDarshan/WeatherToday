@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 import Dropdown from "react-dropdown";
-const options = ["Chicago", "Boston", "New York"];
 
 export class WeatherTodayUI extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedOption: options[0]
-    };
-  }
-  onSelectChange = value => {
-    this.setState({ selectedOption: value.value });
-  };
   render() {
-    console.log(this.state.selectedOption);
+    console.log(this.props.selectedCity);
 
     return (
       <div className="container">
@@ -22,9 +11,9 @@ export class WeatherTodayUI extends Component {
           <label>Select City</label>
           <Dropdown
             className="btn btn-dark float-left"
-            options={options}
-            value={this.state.selectedOption}
-            onChange={this.onSelectChange}
+            options={this.props.Options}
+            value={this.props.selectedCity}
+            onChange={this.props.SelectFunction}
           ></Dropdown>
         </div>
       </div>
